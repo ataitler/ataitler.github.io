@@ -15,3 +15,48 @@
 .contact-strip .contact-links a{font-size:.9rem;font-weight:550;white-space:nowrap}
 .contact-strip .contact-links a:hover{text-decoration:underline}
 @media(max-width:650px){.contact-strip-inner{align-items:flex-start;flex-direction:column;gap:12px}.contact-strip{padding:22px 0}.lab-lead{margin-top:-8px}}
+
+/* Research page */
+.research-hero{background:linear-gradient(135deg,#f5f8fb,#fff);padding:74px 0 48px;border-bottom:1px solid #e3eaf0}
+.research-hero h1{font-size:clamp(2.4rem,5vw,3.6rem);letter-spacing:-.035em;margin:12px 0 18px;color:#253d59}
+.research-lede{font-size:1.12rem;line-height:1.85;color:#52647a;max-width:840px;margin:0}
+.research-jump{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.research-jump a{display:inline-block;text-decoration:none;color:#435d7a;background:#eaf0f6;border:1px solid #dce5ed;padding:9px 15px;border-radius:99px;font-size:.9rem;font-weight:600}
+.research-jump a:hover{background:#dbe6f0}
+.research-content{padding-top:35px;padding-bottom:70px}
+.research-direction{padding:42px 0 50px;border-bottom:1px solid #dfe7ef;scroll-margin-top:95px}
+.direction-intro{display:grid;grid-template-columns:62px minmax(0,1fr);gap:16px;align-items:start;margin-bottom:30px}
+.direction-index{color:#8093aa;font-size:1.5rem;font-weight:700;line-height:1.35}
+.direction-intro h2{color:#2f4763;font-size:clamp(1.55rem,3vw,2rem);margin:0 0 9px;letter-spacing:-.02em}
+.direction-intro p{color:#5c6f82;line-height:1.75;max-width:850px;margin:0}
+.research-themes{margin-left:78px;display:grid;gap:18px}
+.research-theme{background:#f7f9fc;border:1px solid #e2e9f0;border-radius:14px;padding:27px 30px}
+.research-theme h3{color:#344d6a;font-size:1.27rem;margin:0 0 10px}
+.research-theme>p{color:#536578;line-height:1.8;margin:0 0 20px;max-width:850px}
+.research-links{border-top:1px solid #dce5ee;padding-top:16px}
+.research-links h4{font-size:.8rem;letter-spacing:.075em;text-transform:uppercase;color:#7a8ba0;margin:0 0 10px}
+.research-links ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.research-links li{display:flex;flex-direction:column;gap:2px}
+.research-links li a{color:#405d7b;text-decoration:none;font-weight:650}
+.research-links li a:hover{text-decoration:underline}
+.research-links li span{font-size:.88rem;color:#78889a}
+.research-code{display:inline-block;margin-top:14px;font-size:.9rem;color:#405d7b;font-weight:600}
+.research-note{font-size:.85rem;color:#77899c;margin-top:24px}
+@media(max-width:700px){.research-hero{padding:44px 0 32px}.direction-intro{grid-template-columns:1fr;gap:4px}.direction-index{font-size:1rem}.research-themes{margin-left:0}.research-theme{padding:20px}.research-direction{padding:30px 0}}
+
+/* Version 6: research figure placeholders and pyRDDLGym */
+.research-theme-layout{display:grid;grid-template-columns:minmax(210px,0.85fr) minmax(0,1.4fr);gap:26px;align-items:start;margin:15px 0 23px}
+.research-figure{margin:0;min-width:0}
+.research-figure-placeholder{aspect-ratio:4/3;border:1px dashed #aabbd0;border-radius:10px;background:linear-gradient(145deg,#eaf0f6,#f7f9fc);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;color:#647d99;gap:7px}
+.figure-icon{font-size:2.2rem;line-height:1;color:#8ca1b7}.research-figure-placeholder strong{font-size:.92rem;color:#435d7a}.research-figure-placeholder span:last-child{font-size:.78rem;line-height:1.45}
+.research-figure figcaption{color:#7b8b9d;font-size:.76rem;line-height:1.45;margin-top:8px}
+.research-theme-copy p{color:#536578;line-height:1.8;margin:0}
+.research-software{margin-top:19px;padding:17px 20px;background:#edf3f8;border-left:3px solid #566e8c;border-radius:0 9px 9px 0}
+.research-software h4{margin:0 0 7px;font-size:.77rem;letter-spacing:.08em;text-transform:uppercase;color:#617891}
+.research-software a{color:#344d6a;font-weight:700;text-decoration:none}.research-software a:hover{text-decoration:underline}
+.research-software p{font-size:.9rem;color:#536578;line-height:1.65;margin:7px 0 0}
+@media(max-width:760px){.research-theme-layout{grid-template-columns:1fr;gap:15px}.research-figure{max-width:440px}}
+
+/* Research figures: preserve full scientific diagrams without cropping */
+.research-figure-image{display:block;width:100%;height:auto;max-height:340px;object-fit:contain;object-position:center;background:#fff;border:1px solid #e1e8f0;border-radius:10px;padding:8px}
+@media(max-width:760px){.research-figure-image{max-height:360px}}
