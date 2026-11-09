@@ -57,15 +57,72 @@
     <section class="section news-section" id="news">
       <div class="container">
         <div class="section-heading"><p class="eyebrow">Updates</p><h2>Latest News</h2></div>
-        <!-- Replace the sample below with verified, dated news items. Copy the article block for each item. -->
-        <article class="news-item">
-          <time datetime="">—</time>
-          <div><h3>News updates coming soon</h3><p>New papers, student achievements, conference presentations, and lab announcements will appear here.</p></div>
-        </article>
+        <div id="news-list" aria-live="polite">
+          <p>Loading news…</p>
+        </div>
       </div>
     </section>
   </main>
   <footer class="footer"><div class="container footer-inner"><img class="footer-logo" src="assets/drive-footer.svg" alt="DRIVE Lab"><small>© <span id="year"></span> Ayal Taitler · DRIVE Lab</small></div></footer>
+  <script>
+    (async function loadNews() {
+      const container = document.getElementById('news-list');
+      if (!container) return;
+      try {
+        const response = await fetch('news.json', { cache: 'no-cache' });
+        if (!response.ok) throw new Error('Could not load news');
+        const data = await response.json();
+        if (!Array.isArray(data)) throw new Error('Invalid news data');
+        // News dates in JSON use DD-MM-YYYY.
+        function parseNewsDate(value) {
+          const match = /^(\d{2})-(\d{2})-(\d{4})$/.exec(value || '');
+          if (!match) return null;
+          const [, day, month, year] = match;
+          const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+          return date.getUTCFullYear() === Number(year) &&
+            date.getUTCMonth() === Number(month) - 1 &&
+            date.getUTCDate() === Number(day) ? date : null;
+        }
+        const items = data.filter(item => item && parseNewsDate(item.date) && item.title && item.description)
+          .sort((a, b) => parseNewsDate(b.date) - parseNewsDate(a.date))
+          .slice(0, 10);
+        container.replaceChildren();
+        if (!items.length) {
+          container.textContent = 'News updates coming soon.';
+          return;
+        }
+        for (const item of items) {
+          const article = document.createElement('article');
+          article.className = 'news-item';
+          const time = document.createElement('time');
+          const parsedDate = parseNewsDate(item.date);
+          time.dateTime = parsedDate.toISOString().slice(0, 10);
+          time.textContent = parsedDate.toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'
+          });
+          const body = document.createElement('div');
+          const heading = document.createElement('h3');
+          const description = document.createElement('p');
+          description.textContent = item.description;
+          if (item.url && /^https?:\/\//i.test(item.url)) {
+            const link = document.createElement('a');
+            link.href = item.url;
+            link.textContent = item.title;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            heading.append(link);
+          } else {
+            heading.textContent = item.title;
+          }
+          body.append(heading, description);
+          article.append(time, body);
+          container.append(article);
+        }
+      } catch (error) {
+        container.textContent = 'News is temporarily unavailable.';
+      }
+    })();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

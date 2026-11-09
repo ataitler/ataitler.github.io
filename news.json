@@ -1,0 +1,62 @@
+[
+  {
+    "date": "26-10-2026",
+    "title": "Yuval Aroosh presents at ABC Social Robotics",
+    "description": "Our MSc student Yuval Aroosh presented a poster on Adaptive Stochastic Action Perturbations at the ABC Social Robotics mini-conference.",
+    "url": ""
+  },
+  {
+    "date": "30-09-2026",
+    "title": "Five DRIVE Lab MSc students submit their theses",
+    "description": "Congratulations to Lidor Erez, Harel Gil, Amit Gedj, Gal Ram, and Eden Hindi on submitting their MSc theses for review!",
+    "url": ""
+  },
+  {
+    "date": "26-09-2026",
+    "title": "Ayal Taitler becomes an IEEE Senior Member",
+    "description": "Ayal Taitler was elevated to IEEE Senior Member.",
+    "url": ""
+  },
+  {
+    "date": "01-09-2026",
+    "title": "ISFAI 2027 announced",
+    "description": "Ayal Taitler and Nadav Merlis are co-chairing the Israeli Symposium on the Foundations of Artificial Intelligence (ISFAI 2027), taking place on February 10, 2027, at the Technion.",
+    "url": "https://iaai.org.il/events/ISFAI2027/"
+  },
+  {
+    "date": "29-06-2026",
+    "title": "Research presented at PlanRob 2026",
+    "description": "Our work on dynamics-aware refinement of hybrid plans for physically feasible robotic execution was presented at the ICAPS 2026 Planning and Robotics workshop in Dublin.",
+    "url": "https://icaps26.icaps-conference.org/program/workshops/planrob/"
+  },
+  {
+    "date": "29-06-2026",
+    "title": "Research presented at LM4Plan 2026",
+    "description": "Our work on evaluating per-domain generalization using LLMs, theorem provers, and statistical model checking was presented at the ICAPS 2026 LM4Plan workshop in Dublin.",
+    "url": "https://icaps26.icaps-conference.org/program/workshops/lm4plan/"
+  },
+  {
+    "date": "28-06-2026",
+    "title": "Research presented at PRL 2026",
+    "description": "Our work on model-driven policy optimization via stochastic exploration was presented at the ICAPS 2026 PRL workshop in Dublin.",
+    "url": "https://prl-theworkshop.github.io/prl2026-icaps/"
+  },
+  {
+    "date": "16-06-2026",
+    "title": "Amit Gedj presents at ICUAS 2026",
+    "description": "Amit Gedj presented our research, Disturbance-Aware Data-Driven Optimal Altitude Control of UAVs, at the International Conference on Unmanned Aircraft Systems (ICUAS 2026) in Greece.",
+    "url": ""
+  },
+  {
+    "date": "15-05-2026",
+    "title": "ICAPS 2027 Summer School co-chair announced",
+    "description": "Ayal Taitler will co-chair the ICAPS 2027 Summer School in South Carolina, USA, in June 2027.",
+    "url": ""
+  },
+  {
+    "date": "01-02-2026",
+    "title": "Dr. Santosh Kumar joins DRIVE Lab",
+    "description": "We welcome Dr. Santosh Kumar to DRIVE Lab as a postdoctoral researcher.",
+    "url": ""
+  }
+]
