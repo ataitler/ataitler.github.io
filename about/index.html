@@ -1,4 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>About | Ayal Taitler</title><link rel="icon" href="../assets/drive-icon.svg" type="image/svg+xml"><link rel="stylesheet" href="../styles.css"><style>
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>About | Ayal Taitler</title><link href="../assets/drive-icon.svg" rel="icon" type="image/svg+xml"/><link href="../styles.css" rel="stylesheet"/><style>
 .about-page{--blue:#566e8c;--ink:#24364a;--muted:#657589;--line:#e1e8ef;color:var(--ink)}
 .about-page .about-container{max-width:1080px;margin:0 auto;padding:0 28px}
 .about-page .about-hero{background:linear-gradient(180deg,#f5f8fb,#fff);padding:65px 0 42px}
@@ -28,35 +30,160 @@
 .about-page .small-note{color:var(--muted);font-size:14px}
 @media(max-width:740px){.about-page .service-grid{grid-template-columns:1fr}.about-page .entry{grid-template-columns:100px minmax(0,1fr);gap:12px}}
 @media(max-width:560px){.about-page .about-container{padding:0 20px}.about-page .about-hero{padding:44px 0 32px}.about-page .section{padding-top:36px}.about-page .entry{grid-template-columns:1fr;gap:4px}}
-</style></head><body><header class="site-header"><div class="container header-inner"><a class="wordmark" href="../">Ayal Taitler</a><a class="header-logo" href="../"><img alt="DRIVE Lab" src="../assets/drive-logo.svg"/></a><button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle">☰</button><nav aria-label="Main navigation" id="navigation"><a href="../">Home</a><a href="../research/">Research</a><a href="../publications/">Publications</a><a href="../people/">People</a><a href="../teaching/">Teaching</a><a class="active" aria-current="page" href="../about/">About</a></nav></div></header><main class="about-page">
-<section class="about-hero"><div class="about-container"><p class="eyebrow">Ayal Taitler · DRIVE Lab</p><h1>About</h1><p class="intro">Academic background, professional experience, and contributions to the research community.</p><nav class="jump-links" aria-label="On this page"><a href="#biography">Biography</a><a href="#education">Education</a><a href="#appointments">Academic Appointments</a><a href="#industry">Industry Experience</a><a href="#service">Service &amp; Leadership</a></nav></div></section>
+
+/* Interactive chronological background timeline */
+.about-page .background-note{margin:-7px 0 27px}
+.about-page .interactive-timeline{position:relative;max-width:950px}
+.about-page .milestone{display:grid;grid-template-columns:120px 46px minmax(0,1fr);gap:15px;position:relative;min-height:91px}
+.about-page .milestone-date{font-size:13px;font-weight:700;color:var(--blue);padding-top:11px;text-align:right;white-space:nowrap}
+.about-page .milestone-axis{position:relative;display:flex;justify-content:center;padding-top:9px}
+.about-page .milestone-axis:before{content:'';position:absolute;top:0;bottom:0;width:2px;background:#d8e3ec;left:calc(50% - 1px)}
+.about-page .milestone:first-child .milestone-axis:before{top:21px}
+.about-page .milestone:last-child .milestone-axis:before{bottom:calc(100% - 21px)}
+.about-page .milestone-dot{position:relative;z-index:1;width:24px;height:24px;border:5px solid #fff;border-radius:50%;background:var(--blue);box-shadow:0 0 0 2px #b8c8d9;cursor:pointer;transition:transform .15s,background .15s}
+.about-page .milestone-dot:hover,.about-page .milestone-dot[aria-expanded=true]{background:#2e4f70;transform:scale(1.18)}
+.about-page .milestone-content{padding:0 0 26px;min-width:0}
+.about-page .milestone-heading{display:flex;align-items:center;gap:10px;text-align:left;width:100%;padding:6px 0 2px;background:none;border:0;color:var(--ink);font:inherit;cursor:pointer}
+.about-page .milestone-title{font-size:17px;font-weight:700;line-height:1.45}
+.about-page .milestone-heading:hover .milestone-title{color:var(--blue)}
+.about-page .milestone-chevron{font-size:22px;line-height:1;color:#8194a8;transition:transform .2s}
+.about-page .milestone-heading[aria-expanded=true] .milestone-chevron{transform:rotate(180deg)}
+.about-page .milestone-subline{display:flex;gap:9px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.about-page .milestone-type{font-size:11px;letter-spacing:.03em;color:#5a718c;background:#eff3f8;padding:2px 8px;border-radius:12px}
+.about-page .milestone[data-type=industry] .milestone-type{background:#f4f1ed;color:#816b50}
+.about-page .milestone[data-type=education] .milestone-type{background:#eef5f1;color:#4c7967}
+.about-page .milestone-detail{margin-top:12px;padding:13px 17px;background:#f6f8fb;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:14px;color:#52667d}
+.about-page .milestone-detail[hidden]{display:none}
+.about-page .milestone-detail p{margin:0;line-height:1.7}
+.about-page .milestone-dot:focus-visible,.about-page .milestone-heading:focus-visible{outline:3px solid #7396b7;outline-offset:4px}
+@media(max-width:560px){.about-page .milestone{grid-template-columns:78px 30px minmax(0,1fr);gap:8px}.about-page .milestone-date{font-size:11px;white-space:normal}.about-page .milestone-title{font-size:15px}.about-page .milestone-subline{font-size:12px}.about-page .milestone-dot{width:21px;height:21px}.about-page .milestone-content{padding-bottom:20px}}
+
+/* Two-sided overlapping career timeline */
+.about-page .dual-timeline{position:relative;max-width:1100px;margin:12px auto 0}
+.about-page .dual-timeline:before{content:"";position:absolute;top:18px;bottom:18px;left:50%;width:3px;transform:translateX(-50%);background:#c8d8e6;border-radius:3px}
+.about-page .timeline-cluster{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);gap:0;position:relative;min-height:110px}
+.about-page .timeline-side{display:flex;flex-direction:column;gap:12px;padding-bottom:27px;min-width:0}
+.about-page .timeline-left{padding-right:22px;align-items:stretch}
+.about-page .timeline-right{padding-left:22px;align-items:stretch}
+.about-page .milestone{display:block;position:relative;min-height:0;padding:10px 14px 12px;background:#fff;border:1px solid #dce5ee;border-radius:9px;box-shadow:0 2px 8px rgba(46,79,112,.04)}
+.about-page .milestone:before{content:"";position:absolute;top:24px;width:22px;height:2px;background:#c8d8e6}
+.about-page .milestone-right:before{right:100%}
+.about-page .milestone-left:before{left:100%}
+.about-page .milestone-axis{position:absolute;top:12px;width:24px;height:24px;padding:0;display:block}
+.about-page .milestone-axis:before{display:none}
+.about-page .milestone-right .milestone-axis{right:calc(100% + 11px)}
+.about-page .milestone-left .milestone-axis{left:calc(100% + 11px)}
+.about-page .milestone-dot{width:22px;height:22px;border:4px solid white}
+.about-page .milestone-date{padding:0;text-align:left;font-size:12px;letter-spacing:.01em}
+.about-page .milestone-content{padding:0}
+.about-page .milestone-heading{padding:3px 0 2px}
+.about-page .milestone-title{font-size:15px;line-height:1.35}
+.about-page .milestone-subline{font-size:12px}
+.about-page .milestone-detail{padding:10px 12px;margin-top:10px;font-size:13px}
+.about-page .timeline-left .milestone-date{text-align:right}
+.about-page .timeline-left .milestone-heading{justify-content:flex-end;text-align:right}
+.about-page .timeline-left .milestone-subline{justify-content:flex-end;text-align:right}
+.about-page .timeline-left .milestone-detail{text-align:left}
+.about-page .timeline-cluster:has(.milestone-left):has(.milestone-right) .timeline-left{justify-content:center}
+@media(max-width:700px){
+ .about-page .dual-timeline:before{left:15px}
+ .about-page .timeline-cluster{display:flex;flex-direction:column;gap:10px;padding-left:46px;margin-bottom:18px}
+ .about-page .timeline-spine{display:none}
+ .about-page .timeline-side{padding:0;gap:10px}
+ .about-page .timeline-left{order:2}
+ .about-page .timeline-right{order:1}
+ .about-page .milestone-left .milestone-axis,.about-page .milestone-right .milestone-axis{left:-42px;right:auto}
+ .about-page .milestone-left:before,.about-page .milestone-right:before{right:100%;left:auto;width:28px}
+ .about-page .timeline-left .milestone-date,.about-page .timeline-left .milestone-heading,.about-page .timeline-left .milestone-subline{text-align:left;justify-content:flex-start}
+ .about-page .milestone{padding:10px 12px}
+}
+
+/* Single-axis timeline: every milestone dot sits on the same central spine. */
+.about-page .dual-timeline{max-width:1100px;margin:16px auto 0}
+.about-page .dual-timeline:before{left:50%;top:18px;bottom:18px;z-index:0}
+.about-page .axis-row{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);align-items:start;position:relative;min-height:0;margin:0 0 9px}
+.about-page .axis-spine{grid-column:2;grid-row:1;position:relative;height:44px;z-index:2;display:flex;justify-content:center;align-items:flex-start;padding-top:12px}
+.about-page .axis-spine .milestone-axis{position:static;width:22px;height:22px;display:block}
+.about-page .axis-spine .milestone-dot{display:block;width:22px;height:22px;border:4px solid #fff;cursor:pointer}
+.about-page .axis-row .milestone{position:relative;margin:0;min-height:0;padding:9px 13px 10px}
+.about-page .axis-row .milestone-left{grid-column:1;grid-row:1;margin-right:20px}
+.about-page .axis-row .milestone-right{grid-column:3;grid-row:1;margin-left:20px}
+.about-page .axis-row .axis-empty{min-height:1px}
+.about-page .axis-row .milestone:before{top:23px;width:20px}
+.about-page .axis-row .milestone-left:before{left:100%;right:auto}
+.about-page .axis-row .milestone-right:before{right:100%;left:auto}
+.about-page .axis-row .milestone-left .milestone-date{text-align:right}
+.about-page .axis-row .milestone-left .milestone-heading,.about-page .axis-row .milestone-left .milestone-subline{justify-content:flex-end;text-align:right}
+.about-page .axis-row .milestone-detail{text-align:left}
+@media(max-width:700px){
+ .about-page .dual-timeline:before{left:15px}
+ .about-page .axis-row{grid-template-columns:32px minmax(0,1fr);margin-bottom:12px}
+ .about-page .axis-spine{grid-column:1;grid-row:1;padding-top:12px;justify-content:flex-start;padding-left:4px}
+ .about-page .axis-row .milestone-left,.about-page .axis-row .milestone-right{grid-column:2;grid-row:1;margin:0 0 0 12px}
+ .about-page .axis-row .milestone:before{right:100%;left:auto;width:12px}
+ .about-page .axis-row .milestone-left .milestone-date{text-align:left}
+ .about-page .axis-row .milestone-left .milestone-heading,.about-page .axis-row .milestone-left .milestone-subline{justify-content:flex-start;text-align:left}
+ .about-page .axis-row .axis-empty{display:none}
+}
+
+/* Rhythm controls: edit these values to change spacing between milestones. */
+.about-page .axis-row{margin-bottom:8px}
+.about-page .axis-row.axis-close-next{margin-bottom:2px}
+.about-page .axis-row.axis-group-end{margin-bottom:100px}
+@media(max-width:700px){
+ .about-page .axis-row{margin-bottom:18px}
+ .about-page .axis-row.axis-close-next{margin-bottom:4px}
+ .about-page .axis-row.axis-group-end{margin-bottom:25px}
+}
+</style><style>
+/* Borderless milestone presentation, retaining the central spine and spacing. */
+.about-page .axis-row .milestone {
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  padding:7px 2px 9px;
+}
+.about-page .axis-row .milestone:before { display:none; }
+.about-page .axis-row .milestone-detail {
+  background:transparent;
+  border-left:2px solid #c8d8e6;
+  border-radius:0;
+  padding:4px 0 4px 13px;
+}
+.about-page .milestone-dot-static,
+.about-page .milestone-dot-static:hover {
+  cursor:default;
+  transform:none;
+  background:var(--blue);
+}
+.about-page .milestone-heading-static { cursor:default; }
+.about-page .milestone-heading-static:hover .milestone-title { color:var(--ink); }
+</style></head><body><header class="site-header"><div class="container header-inner"><a class="wordmark" href="../">Ayal Taitler</a><a class="header-logo" href="../"><img alt="DRIVE Lab" src="../assets/drive-logo.svg"/></a><button aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle">☰</button><nav aria-label="Main navigation" id="navigation"><a href="../">Home</a><a href="../research/">Research</a><a href="../publications/">Publications</a><a href="../people/">People</a><a href="../teaching/">Teaching</a><a aria-current="page" class="active" href="../about/">About</a></nav></div></header><main class="about-page">
+<section class="about-hero"><div class="about-container"><p class="eyebrow">Ayal Taitler · DRIVE Lab</p><h1>About</h1><p class="intro">Academic background, professional experience, and contributions to the research community.</p><nav aria-label="On this page" class="jump-links"><a href="#biography">Biography</a><a href="#background">Background</a><a href="#service">Service &amp; Leadership</a></nav></div></section>
 <div class="about-container about-body">
 <section class="section" id="biography"><h2>Academic Biography</h2><div class="bio"><p>I am an Assistant Professor in the Department of Industrial Engineering and Management at Ben-Gurion University of the Negev, where I lead the DRIVE Lab (Decision-making, Robotics and Intelligent Vehicles). My research focuses on intelligent decision-making systems, combining automated planning, reinforcement learning, and optimal control, with applications in robotics and transportation.</p><p>Before joining Ben-Gurion University, I was an AI Postdoctoral Fellow at the University of Toronto and a Faculty Affiliate Researcher at the Vector Institute. I earned my PhD at the Technion, where my doctoral research addressed integrated planning and control for hybrid domains. My background spans both academic research and industry, including research internships at VMware Research and the Bosch Center for Artificial Intelligence, and earlier engineering and technical leadership roles.</p></div></section>
-<section class="section" id="education"><h2>Education</h2><div class="timeline">
-<article class="entry"><div class="when">2017–2021</div><div><h3>PhD · Autonomous Systems and Robotics</h3><p class="org">Technion – Israel Institute of Technology</p><p class="detail">Thesis: <em>A Method for Combined Planning and Control for Hybrid Domains</em><br>Advisors: Erez Karpas and Per-Olof Gutman</p></div></article>
-<article class="entry"><div class="when">2013–2016</div><div><h3>MSc · Electrical and Computer Engineering</h3><p class="org">Technion – Israel Institute of Technology</p><p class="detail">Thesis: <em>Intelligent Control and Learning for an Air Hockey Playing Robot</em><br>Advisor: Nahum Shimkin</p></div></article>
-<article class="entry"><div class="when">2008–2013</div><div><h3>BSc · Electrical and Computer Engineering</h3><p class="org">Technion – Israel Institute of Technology</p><p class="detail">Focus: control theory, signal processing, and computers</p></div></article>
-</div></section>
-<section class="section" id="appointments"><h2>Academic Appointments</h2><div class="timeline">
-<article class="entry"><div class="when">2024–present</div><div><h3>Assistant Professor</h3><p class="org">Ben-Gurion University of the Negev</p></div></article>
-<article class="entry"><div class="when">2023–2024</div><div><h3>Teaching Fellow</h3><p class="org">Technion – Israel Institute of Technology</p></div></article>
-<article class="entry"><div class="when">2022–2024</div><div><h3>AI Postdoctoral Fellow</h3><p class="org">University of Toronto</p></div></article>
-<article class="entry"><div class="when">2022–2024</div><div><h3>Faculty Affiliate Researcher</h3><p class="org">Vector Institute</p></div></article>
-<article class="entry"><div class="when">2022</div><div><h3>Research Fellow</h3><p class="org">Technion – Israel Institute of Technology</p></div></article>
-</div></section>
-<section class="section" id="industry"><h2>Industry Experience</h2><div class="timeline">
-<article class="entry"><div class="when">2020</div><div><h3>AI Research Intern</h3><p class="org">VMware Research Group</p></div></article>
-<article class="entry"><div class="when">2019</div><div><h3>AI Research Intern</h3><p class="org">Bosch Center for Artificial Intelligence (BCAI)</p></div></article>
-<article class="entry"><div class="when">2013</div><div><h3>Real-Time Embedded Software Engineer</h3><p class="org">Rafael</p></div></article>
-<article class="entry"><div class="when">2008–2011</div><div><h3>Infrastructure Architect and Project Manager</h3><p class="org">Omnitech Systems</p></div></article>
-<article class="entry"><div class="when">2007–2008</div><div><h3>Infrastructure and System Team Leader</h3><p class="org">Earlier industry experience</p></div></article>
-<article class="entry"><div class="when">2006–2007</div><div><h3>Business Activity Monitoring Software Engineering Team Leader</h3><p class="org">Earlier industry experience</p></div></article>
-<article class="entry"><div class="when">2004–2005</div><div><h3>Cyber Security Software Engineer</h3><p class="org">Earlier industry experience</p></div></article>
-</div></section>
+<section class="section" id="background"><h2>My Background</h2><p class="small-note background-note">A chronological view of education, academic appointments, and industry experience. Select a dot or title to see details.</p><div class="dual-timeline"><div class="axis-row axis-right"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-0" aria-expanded="false" aria-label="Show details: Assistant Professor, 2024–present" class="milestone-dot" type="button"></button></div></div><article class="milestone milestone-right" data-type="academic"><div class="milestone-date">2024–present</div><div class="milestone-content"><button aria-controls="milestone-detail-0" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">Assistant Professor</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Ben-Gurion University of the Negev, Israel</span><span class="milestone-type">Academic</span></div><div class="milestone-detail" hidden="" id="milestone-detail-0"><p style="margin-bottom: 15px;">Head of the Decision-making, Robotics, and Intelligent Vehicles Lab (DRIVE)</p><p>Department of Industrial Engineering and Management</p></div></div></article></div><div class="axis-row axis-left axis-close-next"><article class="milestone milestone-left" data-type="academic"><div class="milestone-date">2023–2024</div><div class="milestone-content"><button aria-controls="milestone-detail-1" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">Teaching Fellow</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Technion – Israel Institute of Technology, Israel</span><span class="milestone-type">Academic</span></div><div class="milestone-detail" hidden="" id="milestone-detail-1"><p>Faculty of Electrical and Computer Engineering</p></div></div></article><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-1" aria-expanded="false" aria-label="Show details: Teaching Fellow, 2023–2024" class="milestone-dot" type="button"></button></div></div><div class="axis-empty"></div></div><div class="axis-row axis-left axis-close-next"><article class="milestone milestone-left" data-type="academic"><div class="milestone-date">2022–2024</div><div class="milestone-content"><button aria-controls="milestone-detail-3" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">Faculty Affiliate Researcher</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Vector Institute, Canada</span><span class="milestone-type">Academic</span></div><div class="milestone-detail" hidden="" id="milestone-detail-3"><p>Faculty Affiliate Researcher · Vector Institute</p></div></div></article><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-3" aria-expanded="false" aria-label="Show details: Faculty Affiliate Researcher, 2022–2024" class="milestone-dot" type="button"></button></div></div><div class="axis-empty"></div></div><div class="axis-row axis-right axis-group-end"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-2" aria-expanded="false" aria-label="Show details: Postdoctoral Research Fellow (Sacks-Lyon Scholar), 2022–2024" class="milestone-dot" type="button"></button></div></div><article class="milestone milestone-right" data-type="academic"><div class="milestone-date">2022–2024</div><div class="milestone-content"><button aria-controls="milestone-detail-2" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">Postdoctoral Research Fellow (Sacks-Lyon Scholar)</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>University of Toronto, Canada</span><span class="milestone-type">Academic</span></div><div class="milestone-detail" hidden="" id="milestone-detail-2"><p style="margin-bottom: 24px;">pyRDDLGym and planning by backpropagation schemes</p><p style="margin-bottom: 24px;">Multi-agent intelligent traffic control (eMARLIN family)</p><p style="margin-bottom: 24px;">Organizer of the 2023 International Planning Competition, stochastic planning and reinforcement learning track</p><p>Department of Mechanical and Industrial Engineering</p></div></div></article></div><div class="axis-row axis-right"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-4" aria-expanded="false" aria-label="Show details: Research Fellow, 2022" class="milestone-dot" type="button"></button></div></div><article class="milestone milestone-right" data-type="academic"><div class="milestone-date">2022</div><div class="milestone-content"><button aria-controls="milestone-detail-4" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">Research Fellow</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Technion – Israel Institute of Technology, Israel</span><span class="milestone-type">Academic</span></div><div class="milestone-detail" hidden="" id="milestone-detail-4"><p>Faculty of Data and Decision Sciences</p></div></div></article></div><div class="axis-row axis-right axis-close-next"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-7" aria-expanded="false" aria-label="Show details: PhD in Autonomous Systems and Robotics, 2017–2021" class="milestone-dot" type="button"></button></div></div><article class="milestone milestone-right" data-type="education"><div class="milestone-date">2017–2021</div><div class="milestone-content"><button aria-controls="milestone-detail-7" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">PhD in Autonomous Systems and Robotics</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Technion – Israel Institute of Technology, Israel</span><span class="milestone-type">Education</span></div><div class="milestone-detail" hidden="" id="milestone-detail-7"><p class="detail">Thesis: <em>A Method for Combined Planning and Control for Hybrid Domains</em><br/><br/>Advisors: Erez Karpas and Per-Olof Gutman</p></div></div></article></div><div class="axis-row axis-left axis-close-next"><article class="milestone milestone-left" data-type="industry"><div class="milestone-date">2020</div><div class="milestone-content"><button aria-controls="milestone-detail-5" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">PhD Research Intern</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>VMware Research Group, Israel</span><span class="milestone-type">Industry</span></div><div class="milestone-detail" hidden="" id="milestone-detail-5"><p>Reinforcement learning project for fast rule resolution in packet routing</p></div></div></article><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-5" aria-expanded="false" aria-label="Show details: PhD Research Intern, 2020" class="milestone-dot" type="button"></button></div></div><div class="axis-empty"></div></div><div class="axis-row axis-left axis-group-end"><article class="milestone milestone-left" data-type="industry"><div class="milestone-date">2019</div><div class="milestone-content"><button aria-controls="milestone-detail-6" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">PhD Research Intern</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Bosch Center for Artificial Intelligence (BCAI), Israel</span><span class="milestone-type">Industry</span></div><div class="milestone-detail" hidden="" id="milestone-detail-6"><p>Alpha-Zero style algorithm for online scheduling problems in fabrication plants</p></div></div></article><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-6" aria-expanded="false" aria-label="Show details: PhD Research Intern, 2019" class="milestone-dot" type="button"></button></div></div><div class="axis-empty"></div></div><div class="axis-row axis-right axis-close-next"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-8" aria-expanded="false" aria-label="Show details: MSc in Electrical and Computer Engineering, 2013–2016" class="milestone-dot" type="button"></button></div></div><article class="milestone milestone-right" data-type="education"><div class="milestone-date">2013–2016</div><div class="milestone-content"><button aria-controls="milestone-detail-8" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">MSc in Electrical and Computer Engineering</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Technion – Israel Institute of Technology, Israel</span><span class="milestone-type">Education</span></div><div class="milestone-detail" hidden="" id="milestone-detail-8"><p class="detail">Thesis: <em>Intelligent Control and Learning for an Air Hockey Playing Robot</em><br/><br/>Advisor: Nahum Shimkin</p></div></div></article></div><div class="axis-row axis-left axis-group-end"><article class="milestone milestone-left" data-type="industry"><div class="milestone-date">2013</div><div class="milestone-content"><button aria-controls="milestone-detail-9" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">Real-Time Embedded Software Engineer</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Rafael, Israel</span><span class="milestone-type">Industry</span></div><div class="milestone-detail" hidden="" id="milestone-detail-9"><p>Software Defined Radio on Texas Instruments DSPs</p></div></div></article><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-9" aria-expanded="false" aria-label="Show details: Real-Time Embedded Software Engineer, 2013" class="milestone-dot" type="button"></button></div></div><div class="axis-empty"></div></div><div class="axis-row axis-right axis-close-next"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-10" aria-expanded="false" aria-label="Show details: BSc in Electrical and Computer Engineering, 2008–2013" class="milestone-dot" type="button"></button></div></div><article class="milestone milestone-right" data-type="education"><div class="milestone-date">2008–2013</div><div class="milestone-content"><button aria-controls="milestone-detail-10" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">BSc in Electrical and Computer Engineering</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Technion – Israel Institute of Technology, Israel</span><span class="milestone-type">Education</span></div><div class="milestone-detail" hidden="" id="milestone-detail-10"><p class="detail">Focus: control theory, signal processing, and computers</p></div></div></article></div><div class="axis-row axis-left axis-group-end"><article class="milestone milestone-left" data-type="industry"><div class="milestone-date">2008–2011</div><div class="milestone-content"><button aria-controls="milestone-detail-11" aria-expanded="false" class="milestone-heading" type="button"><span class="milestone-title">Infrastructure Architect and Project Manager</span><span aria-hidden="true" class="milestone-chevron">⌄</span></button><div class="milestone-subline"><span>Malam-Team (previously Omnitech Systems), Israel</span><span class="milestone-type">Industry</span></div><div class="milestone-detail" hidden="" id="milestone-detail-11"><p>Large-scale enterprise IT infrastructure architecture, including virtualization, data centers, and disaster recovery.</p></div></div></article><div class="axis-spine"><div class="milestone-axis"><button aria-controls="milestone-detail-11" aria-expanded="false" aria-label="Show details: Infrastructure Architect and Project Manager, 2008–2011" class="milestone-dot" type="button"></button></div></div><div class="axis-empty"></div></div><div class="axis-row axis-right"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><span aria-hidden="true" class="milestone-dot milestone-dot-static"></span></div></div><article class="milestone milestone-right" data-type="industry"><div class="milestone-date">2007–2008</div><div class="milestone-content"><div class="milestone-heading milestone-heading-static"><span class="milestone-title">Infrastructure and System Team Leader</span></div><div class="milestone-subline"><span>Earlier industry experience</span><span class="milestone-type">Industry</span></div></div></article></div><div class="axis-row axis-right"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><span aria-hidden="true" class="milestone-dot milestone-dot-static"></span></div></div><article class="milestone milestone-right" data-type="industry"><div class="milestone-date">2006–2007</div><div class="milestone-content"><div class="milestone-heading milestone-heading-static"><span class="milestone-title">Business Activity Monitoring Software Engineering Team Leader</span></div><div class="milestone-subline"><span>Earlier industry experience</span><span class="milestone-type">Industry</span></div></div></article></div><div class="axis-row axis-right"><div class="axis-empty"></div><div class="axis-spine"><div class="milestone-axis"><span aria-hidden="true" class="milestone-dot milestone-dot-static"></span></div></div><article class="milestone milestone-right" data-type="industry"><div class="milestone-date">2004–2005</div><div class="milestone-content"><div class="milestone-heading milestone-heading-static"><span class="milestone-title">Cyber Security Software Engineer</span></div><div class="milestone-subline"><span>Earlier industry experience</span><span class="milestone-type">Industry</span></div></div></article></div></div></section>
 <section class="section" id="service"><h2>Academic Service &amp; Leadership</h2><div class="service-grid">
 <article class="service-card"><h3>Conference &amp; Workshop Organization</h3><ul><li>Co-chair, ICAPS 2027 Summer School, South Carolina, USA, June 2027.</li><li>Co-chair, <a href="https://iaai.org.il/events/ISFAI2027/">Israeli Symposium on the Foundations of Artificial Intelligence (ISFAI 2027)</a>, February 2027.</li><li>Co-organizer, <a href="https://prl-theworkshop.github.io/">Bridging the Gap Between AI Planning and Reinforcement Learning (PRL)</a> workshops (2024–2026).</li><li>Organizer, <a href="https://icaps24.icaps-conference.org/program/workshops/wipc/">Workshop on the International Planning Competition (WIPC), ICAPS 2024</a>.</li><li>Co-organizer, <a href="https://ataitler.github.io/IPPC2023/">Probabilistic Planning and Reinforcement Learning Track, International Planning Competition 2023</a>.</li><li>Co-presenter, <a href="https://icaps23.icaps-conference.org/program/tutorials/mdp_modeling/">RDDL and pyRDDLGym tutorial at ICAPS 2023</a> and <a href="https://pyrddlgym-project.github.io/AAAI24-lab">RDDL and pyRDDLGym lab/tutorial at AAAI 2024</a>.</li></ul></article>
 <article class="service-card"><h3>Professional Leadership &amp; Outreach</h3><ul><li>Board Member, Israeli Association for Artificial Intelligence (IAAI), 2024–present.</li><li>Greater Toronto Area Regional Manager, ScienceAbroad, 2023–2024.</li><li>Founder of <a href="https://github.com/pyrddlgym-project/pyRDDLGym">pyRDDLGym</a>, an open-source framework for RDDL-based modeling, simulation, planning, and reinforcement learning.</li></ul></article>
 <article class="service-card"><h3>Reviewing &amp; Program Committees</h3><ul><li>Journal reviewing: <em>Artificial Intelligence</em>, <em>Transportation Research Part C</em>, <em>IEEE Transactions on Automatic Control</em>, <em>IEEE Robotics and Automation Letters</em>, and other journals.</li><li>Program committee and conference reviewing for ICAPS, AAAI, IJCAI, ECAI, NeurIPS, ICRA, SoCS, and ITSC.</li><li>Mentor, AAAI Doctoral Consortium.</li></ul></article>
 <article class="service-card"><h3>Professional Societies</h3><ul><li>IEEE Senior Member, including the Control Systems and Robotics communities.</li><li>Association for the Advancement of Artificial Intelligence (AAAI).</li><li>Israeli Association for Artificial Intelligence (IAAI).</li></ul></article>
 </div></section>
-</div></main><footer class="footer"><div class="container footer-inner"><img alt="DRIVE Lab" class="footer-logo" src="../assets/drive-footer.svg"/><small>© <span id="year"></span> Ayal Taitler · DRIVE Lab</small></div></footer><script src="../script.js"></script></body></html>
+</div></main><footer class="footer"><div class="container footer-inner"><img alt="DRIVE Lab" class="footer-logo" src="../assets/drive-footer.svg"/><small>© <span id="year"></span> Ayal Taitler · DRIVE Lab</small></div></footer><script src="../script.js"></script><script>
+// Dot and heading live in different branches of each axis-row.
+document.querySelectorAll('.about-page .axis-row').forEach(function(row) {
+  const dot = row.querySelector('.milestone-dot');
+  const heading = row.querySelector('.milestone-heading');
+  const panel = row.querySelector('.milestone-detail');
+  if (!dot || !heading || !panel) return;
+  function toggle() {
+    const opening = panel.hasAttribute('hidden');
+    panel.hidden = !opening;
+    dot.setAttribute('aria-expanded', String(opening));
+    heading.setAttribute('aria-expanded', String(opening));
+  }
+  dot.addEventListener('click', toggle);
+  heading.addEventListener('click', toggle);
+});
+</script></body></html>
